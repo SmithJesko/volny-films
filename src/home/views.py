@@ -294,3 +294,16 @@ def report_a_bug(request):
         'form': form
     }
     return render(request, 'report-a-bug.html', context)
+
+def trouble_playing(request):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            return redirect('/search/{}'.format(form.cleaned_data['search']))
+    else:
+        form = SearchForm()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'trouble-playing.html', context)

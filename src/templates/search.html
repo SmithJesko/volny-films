@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{{ qstr }}</h1>
-{{ search_results }}
 <div class="content-body">
     <div class="content-row" id="popular-movies">
         <h2 style="margin-left: 7px;">Search Results</h2>
+        <p>({{ search_results|length }} results)</p>
         <div class="carousel" data-flickity='{ "cellAlign": "left", "wrapAround": true }'>
             {% for i in search_results %}
                 <div class="carousel-cell">
