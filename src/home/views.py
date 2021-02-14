@@ -272,7 +272,6 @@ def search(request, qstr):
                 except Exception as err:
                     print(err)
 
-    print(result_ids)
     search_results = Movie.objects.filter(movie_id__in=result_ids)
 
     context = {

@@ -136,22 +136,29 @@ input:checked + .slider:before {
 }
 
 /* Alert */
-.alert-danger {
-    background-color: #721c24;
+.alert {
     color: #ccc;
     border: none;
     width: 80%;
     margin: auto;
 }
 
-.alert-danger a {
+.alert a {
     text-decoration: none;
     color: #aaa;
     font-weight: bold;
 }
 
-.alert-danger a:hover{
+.alert a:hover{
     color: #ddd;
+}
+
+.alert-danger {
+    background-color: #721c24;
+}
+
+.alert-success {
+    background-color: #1c7232;
 }
 
 /* Jumbotron */
