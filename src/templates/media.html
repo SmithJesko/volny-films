@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="player">
-    <iframe src="{{ url }}" width="85%" height="500px" frameborder="0" allowfullscreen="true" scrolling="no"></iframe>
+    <iframe id="player-src" src="{{ url }}" width="85%" height="500px" frameborder="0" allowfullscreen="true" scrolling="no"></iframe>
     <div class="player-info">
         <h2>{{ media.title }}</h2>
         <hr>
@@ -22,6 +22,13 @@
                 </ul>
             </div>
         </div>
+        {% if episode_urls %}
+            <hr>
+            <h4>Other Episodes</h4>
+            {% for key, value in episode_urls.items %}
+                <button type="button" class="btn btn-dark btn-sm" style="margin: 5px;" onclick="replaceEpisode('{{ value }}')">{{ key }}</button>
+            {% endfor %}
+        {% endif %}
         <hr>
         <h4>Plot</h4>
         <p>{{ media.plot }}</p>
@@ -31,4 +38,10 @@
         <a href="#" class="btn btn-danger">Trouble Playing?</a>
     </div>
 </div>
+<script>
+    function replaceEpisode(url) {
+        console.log(url);
+        document.getElementById('player-src').src = url;
+    }
+</script>
 {% endblock content %}
