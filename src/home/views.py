@@ -6,16 +6,16 @@ from requests.exceptions import HTTPError
 import urllib.request
 
 from .models import Movie
-from .secrets import tmdb_key, player_key
+from .secrets import tmdb_key, omdb_key, player_key
 
 
 def index(request):
     qs = Movie.objects.all()
     urls = {
-        'popular_movies': 'https://api.themoviedb.org/3/movie/popular?api_key=25b5fe2c16a3d43e789fb1b629b5db46&language=en-US&region=us',
-        'top_rated_movies': 'https://api.themoviedb.org/3/movie/top_rated?api_key=25b5fe2c16a3d43e789fb1b629b5db46&language=en-US&region=us',
-        'now_playing_movies': 'https://api.themoviedb.org/3/movie/now_playing?api_key=25b5fe2c16a3d43e789fb1b629b5db46&language=en-US&region=us',
-        # 'popular_tv': 'https://api.themoviedb.org/3/tv/popular?api_key=25b5fe2c16a3d43e789fb1b629b5db46&language=en-US&page=1',
+        'popular_movies': 'https://api.themoviedb.org/3/movie/popular?api_key={}&language=en-US&region=us'.format(tmdb_key),
+        'top_rated_movies': 'https://api.themoviedb.org/3/movie/top_rated?api_key={}&language=en-US&region=us'.format(tmdb_key),
+        'now_playing_movies': 'https://api.themoviedb.org/3/movie/now_playing?api_key={}&language=en-US&region=us'.format(tmdb_key),
+        # 'popular_tv': 'https://api.themoviedb.org/3/tv/popular?api_key={}&language=en-US&page=1'.format(tmdb_key),
     }
 
     popular_movies_list = []
@@ -33,7 +33,40 @@ def index(request):
                 data = json.loads(resp.read().decode("utf-8"))
                 for i in data["results"]:
                     if not Movie.objects.filter(movie_id=i["id"]).exists():
-                        new_movie = Movie(movie_id=i["id"], title=i["original_title"], overview=i["overview"], popularity=i["popularity"], poster=i["poster_path"], release_date=i["release_date"], language=i["original_language"], added=key)
+                        with urllib.request.urlopen('https://api.themoviedb.org/3/movie/{}/external_ids?api_key={}'.format(i["id"], tmdb_key)) as resp:
+                            data = json.loads(resp.read().decode("utf-8"))
+                            imdb_id = data["imdb_id"]
+                        with urllib.request.urlopen('https://www.omdbapi.com?apikey={}&i={}&plot=full'.format(omdb_key, imdb_id)) as resp:
+                            data = json.loads(resp.read().decode("utf-8"))
+                            rated = data["Rated"]
+                            runtime = data["Runtime"]
+                            genre = data["Genre"]
+                            director = data["Director"]
+                            writer = data["Writer"]
+                            actors = data["Actors"]
+                            plot = data["Plot"]
+                            awards = data["Awards"]
+                            imdb_rating = data["imdbRating"]
+                            media_type = data["Type"]
+                        new_movie = Movie(movie_id=i["id"],
+                                        imdb_id=imdb_id,
+                                        title=i["original_title"],
+                                        overview=i["overview"],
+                                        popularity=i["popularity"],
+                                        poster=i["poster_path"],
+                                        release_date=i["release_date"],
+                                        language=i["original_language"],
+                                        added=key,
+                                        rated = rated,
+                                        runtime = runtime,
+                                        genre = genre,
+                                        director = director,
+                                        writer = writer,
+                                        actors = actors,
+                                        plot = plot,
+                                        awards = awards,
+                                        imdb_rating = imdb_rating,
+                                        media_type = media_type)
                         new_movie.save()
                     if key == 'popular_movies':
                         popular_movies_list.append(i["id"])
@@ -53,7 +86,6 @@ def index(request):
         'top_rated_movies': top_rated_movies,
         'now_playing_movies': now_playing_movies,
         'popular_tv_list': popular_tv_list,
-        'data': data["results"]
     }
     # print(popular_movies)
     return render(request, 'index.html', context)

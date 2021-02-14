@@ -1,0 +1,348 @@
+/* Author: Smith Jesko <contact@smithjesko.com / https://smithjesko.com>
+Copyright (©) 2021 Smith Jesko
+
+MIT License */
+
+* { box-sizing: border-box; }
+
+body {
+    background-color: #121212;
+}
+
+.hover-animation{
+    height: 60px;
+    width: 240px;
+    background-color: black;
+    color: white;
+    line-height: 60px;
+    text-align: center;
+    font-family: "lato";
+}
+
+.hover-animation:hover{
+    background-size: cover;
+    cursor: pointer;
+    background-position: center center;
+    -webkit-animation: FANCY-ANIMATION .45s infinite step-end; /* Safari 4+ */
+    -moz-animation:    FANCY-ANIMATION .45s infinite step-end; /* Fx 5+ */
+    -o-animation:      FANCY-ANIMATION .45s infinite step-end; /* Opera 12+ */
+    animation:         FANCY-ANIMATION .45s infinite step-end; /* IE 10+, Fx 29+ */
+}
+
+.volny-input {
+    opacity: 0.6;
+    color: #cac6be !important;
+    background-color: #181a1b !important;
+    border-top-color: #363f48 !important;
+    border-right-color: #363f48 !important;
+    border-bottom-color: #363f48 !important;
+    border-left-color: #363f48 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+.volny-input:hover {
+    opacity: 1;
+}
+
+.volny-btn {
+    background: transparent;
+    border: none;
+    margin-right: 30px;
+    margin-left: 10px;
+    color: white;
+    opacity: 0.6;
+    font-size: 20px;
+}
+
+.volny-btn:hover {
+    opacity: 1;
+}
+
+/* Theme button */
+.theme {
+    background-color : #31B0D5;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 0;
+    border-width: 0;
+}
+
+#theme-toggle {
+    position: fixed;
+    bottom: 80%;
+    right: 10px;
+    background-color: red;
+}
+
+.switch {
+    margin-top: 7px;
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Jumbotron */
+.jumbotron-bg {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: url('../img/jumbotron.jpg') repeat-x;
+    opacity: .4;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    animation: infinite-shift-left 3000s linear infinite;
+}
+
+/* Content */
+.content-body {
+    text-align: left;
+    color: white;
+    margin: 30px 0;
+}
+
+.content-row {
+    margin-top: 25px;
+}
+
+/* Carousel */
+.carousel {
+    margin: 10px 0;
+}
+
+.carousel a {
+    color: red;
+}
+
+.carousel a:hover {
+    color: rgb(172, 0, 0);
+    text-decoration: none;
+}
+.carousel-cell {
+    width: 18%;
+    height: auto;
+    margin-right: 10px;
+    background: black;
+    text-align: left;
+}
+
+.carousel-cell:before {
+    display: block;
+    line-height: 200px;
+    font-size: 80px;
+    color: white;
+}
+
+.carousel-cell img {
+    display: block;
+    width: 100%;
+    max-height: 450px;
+}
+
+.carousel-text {
+    margin: 15px;
+    color: white;
+}
+
+.carousel-text .info {
+    font-size: 10px;
+    color: #777;
+}
+
+.carousel-text .people {
+    font-size: 12px;
+    color: #999;
+}
+
+.flickity-button {
+    background: transparent !important;
+}
+
+.flickity-button-icon {
+    fill: white;
+}
+
+.flickity-page-dots {
+    opacity: 0;
+}
+
+.flickity-prev-next-button.previous {
+    left: -40px;
+}
+
+.flickity-prev-next-button.next {
+    right: -40px;
+}
+
+.row h3 {
+    margin-left: 7px;
+}
+
+/* Player */
+.player {
+    background-color: black;
+    width: 60%;
+    margin: auto;
+}
+
+.player iframe {
+    margin-top: 15px;
+}
+
+.player-info {
+    margin: auto;
+    background-color: black;
+    text-align: left;
+    padding: 10px;
+    width: 90%;
+}
+
+.player h1,h2,h3,h4,h5,h6,p {
+    color: white;
+}
+
+.player hr {
+    background-color: #121212;
+    height: 2px;
+}
+
+/* Player info */
+.list-group {
+    border-radius: 0;
+}
+
+.list-group-item {
+    background-color: #121212;
+    border-radius: 0;
+    color: #777;
+}
+
+/* Footer */
+footer ul.breadcrumb {
+    padding: 12px 16px;
+    list-style: none;
+    background-color: #000;
+    color: white;
+    font-weight: 300;
+}
+
+footer ul.breadcrumb li {
+    display: inline;
+    font-size: 14px;
+}
+
+footer ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: white;
+    content: "/\00a0";
+}
+
+footer ul.breadcrumb li a {
+    color: red;
+    text-decoration: none;
+}
+
+footer ul.breadcrumb li a:hover {
+    color: rgb(172, 0, 0);
+    text-decoration: none;
+}
+
+/* Navbar Animations */
+@-webkit-keyframes FANCY-ANIMATION {
+    0%   { background-image: url("../img/1.png"); }
+    25%   { background-image: url("../img/2.png"); }
+    50%   { background-image: url("../img/3.png"); }
+    75%   { background-image: url("../img/4.png"); }
+    100%   { background-image: url("../img/5.png"); }
+}
+
+@-moz-keyframes FANCY-ANIMATION {
+    0%   { background-image: url("../img/1.png"); }
+    25%   { background-image: url("../img/2.png"); }
+    50%   { background-image: url("../img/3.png"); }
+    75%   { background-image: url("../img/4.png"); }
+    100%   { background-image: url("../img/5.png"); }
+}
+
+@-o-keyframes FANCY-ANIMATION {
+    0%   { background-image: url("../img/1.png"); }
+    25%   { background-image: url("../img/2.png"); }
+    50%   { background-image: url("../img/3.png"); }
+    75%   { background-image: url("../img/4.png"); }
+    100%   { background-image: url("../img/5.png"); }
+} 
+
+@keyframes FANCY-ANIMATION {
+    0%   { background-image: url("../img/1.png"); }
+    25%   { background-image: url("../img/2.png"); }
+    50%   { background-image: url("../img/3.png"); }
+    75%   { background-image: url("../img/4.png"); }
+    100%   { background-image: url("../img/5.png"); }
+}
+
+/* Scrolling jumbotron */
+@keyframes infinite-shift-left {
+    0% {
+        background-position: 50000px;
+    }
+    100% {
+        background-position: 0;
+    }
+}

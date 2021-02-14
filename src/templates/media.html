@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="player">
-    <iframe src="https://videospider.in/getvideo?key=iAc7klBC7bQqpwWO&video_id=tt0086190" width="85%" height="500px" frameborder="0" allowfullscreen="true" scrolling="no"></iframe>
+    <iframe src="https://videospider.in/getvideo?key=iAc7klBC7bQqpwWO&video_id={{ media.movie_id }}&tmdb=1" width="85%" height="500px" frameborder="0" allowfullscreen="true" scrolling="no"></iframe>
     <div class="player-info">
         <h2>{{ media.title }}</h2>
         <hr>
@@ -12,19 +12,19 @@
             </div>
             <div class="col-md-8">
                 <ul class="list-group">
-                    <li class="list-group-item">Genre: </li>
+                    <li class="list-group-item">Genre: {{ media.genre }}</li>
                     <li class="list-group-item">Released: {{ media.release_date }}</li>
                     <li class="list-group-item">Language: {{ media.language }}</li>
-                    <li class="list-group-item">IMDB Rating: </li>
-                    <li class="list-group-item">Director: </li>
-                    <li class="list-group-item">Writer: </li>
-                    <li class="list-group-item">Actors: </li>
+                    <li class="list-group-item">IMDB Rating: {{ media.imdb_rating }}</li>
+                    <li class="list-group-item">Director: {{ media.director }}</li>
+                    <li class="list-group-item">Writer: {{ media.writer }}</li>
+                    <li class="list-group-item">Actors: {{ media.actors }}</li>
                 </ul>
             </div>
         </div>
         <hr>
         <h4>Plot</h4>
-        <p>{{ media.overview }}</p>
+        <p>{{ media.plot }}</p>
         <hr>
         <a href="https://imdb.com/title/${movie.imdbID}" target="_blank" class="btn btn-dark">View IMDB</a>
         <a href="/" class="btn btn-dark">Go Back to Home</a>

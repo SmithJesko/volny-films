@@ -135,6 +135,25 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
+/* Alert */
+.alert-danger {
+    background-color: #721c24;
+    color: #ccc;
+    border: none;
+    width: 80%;
+    margin: auto;
+}
+
+.alert-danger a {
+    text-decoration: none;
+    color: #aaa;
+    font-weight: bold;
+}
+
+.alert-danger a:hover{
+    color: #ddd;
+}
+
 /* Jumbotron */
 .jumbotron-bg {
     position: absolute;
