@@ -163,10 +163,10 @@ def index(request):
 def media(request, movie_id):
     # Analytics
     if request.user.is_authenticated:
-        new_connection = UserClientConnection(ip=get_client_ip(request), user=request.user, url=resolve(request.path_info).url_name)
+        new_connection = UserClientConnection(ip=get_client_ip(request), user=request.user, url='{}/{}'.format(resolve(request.path_info).url_name, movie_id))
         new_connection.save()
     else:
-        new_connection = ClientConnection(ip=get_client_ip(request), url=resolve(request.path_info).url_name)
+        new_connection = ClientConnection(ip=get_client_ip(request), url='{}/{}'.format(resolve(request.path_info).url_name, movie_id))
         new_connection.save()
 
     if request.method == 'POST':

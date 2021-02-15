@@ -151,33 +151,15 @@
                                             <th scope="col">Title</th>
                                             <th scope="col">Views</th>
                                         </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Star Wars</td>
-                                            <td><p class="text-success">5</p></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Star Wars</td>
-                                            <td><p class="text-success">5</p></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Star Wars</td>
-                                            <td><p class="text-success">5</p></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>Star Wars</td>
-                                            <td><p class="text-success">5</p></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">5</th>
-                                            <td>Star Wars</td>
-                                            <td><p class="text-success">5</p></td>
-                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in movie_ranks_sorted %}
+                                            <tr>
+                                                <th scope="row">{{ forloop.counter }}</th>
+                                                <td>{{ i.0 }}</td>
+                                                <td><p class="text-success">{{ i.1 }}</p></td>
+                                            </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
@@ -191,33 +173,15 @@
                                             <th scope="col">Title</th>
                                             <th scope="col">Views</th>
                                         </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Star Wars</td>
-                                            <td><p class="text-success">5</p></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Star Wars</td>
-                                            <td><p class="text-success">5</p></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Star Wars</td>
-                                            <td><p class="text-success">5</p></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>Star Wars</td>
-                                            <td><p class="text-success">5</p></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">5</th>
-                                            <td>Star Wars</td>
-                                            <td><p class="text-success">5</p></td>
-                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in show_ranks_sorted %}
+                                            <tr>
+                                                <th scope="row">{{ forloop.counter }}</th>
+                                                <td>{{ i.0 }}</td>
+                                                <td><p class="text-success">{{ i.1 }}</p></td>
+                                            </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
@@ -236,187 +200,25 @@
                                         <tr>
                                             <th scope="col">Time</th>
                                             <th scope="col">URL</th>
-                                            <th scope="col">Status</th>
+                                            <th scope="col">User</th>
                                             <th scope="col">IP Address</th>
-                                            <th scope="col">Location</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% for i in requests %}
                                             <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/media</td>
-                                                <td class="text-success">200 OK</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
+                                                <td class="text-info">{{ i.timestamp}}</td>
+                                                <td class="text-warning">{{ i.url }}</td>
+                                                <td class="text-success">
+                                                    {% if i.user %}
+                                                        {{ i.user}}
+                                                    {% else %}
+                                                        None
+                                                    {% endif%}
+                                                </td>
+                                                <td>{{ i.ip }}</td>
                                             </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/search=?</td>
-                                                <td class="text-danger">404 NOT FOUND</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/</td>
-                                                <td class="text-success">200 OK</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/media</td>
-                                                <td class="text-success">200 OK</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/search=?</td>
-                                                <td class="text-danger">404 NOT FOUND</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/media</td>
-                                                <td class="text-success">200 OK</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/search=?</td>
-                                                <td class="text-danger">404 NOT FOUND</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/</td>
-                                                <td class="text-success">200 OK</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/media</td>
-                                                <td class="text-success">200 OK</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/search=?</td>
-                                                <td class="text-danger">404 NOT FOUND</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/media</td>
-                                                <td class="text-success">200 OK</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/search=?</td>
-                                                <td class="text-danger">404 NOT FOUND</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/</td>
-                                                <td class="text-success">200 OK</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/media</td>
-                                                <td class="text-success">200 OK</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/search=?</td>
-                                                <td class="text-danger">404 NOT FOUND</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/media</td>
-                                                <td class="text-success">200 OK</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/search=?</td>
-                                                <td class="text-danger">404 NOT FOUND</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/</td>
-                                                <td class="text-success">200 OK</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/media</td>
-                                                <td class="text-success">200 OK</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/search=?</td>
-                                                <td class="text-danger">404 NOT FOUND</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/media</td>
-                                                <td class="text-success">200 OK</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/search=?</td>
-                                                <td class="text-danger">404 NOT FOUND</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/</td>
-                                                <td class="text-success">200 OK</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/media</td>
-                                                <td class="text-success">200 OK</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-info">02-10-21 10:07:58</td>
-                                                <td class="text-warning">/search=?</td>
-                                                <td class="text-danger">404 NOT FOUND</td>
-                                                <td>127.0.0.1</td>
-                                                <td>Texas, USA</td>
-                                            </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
