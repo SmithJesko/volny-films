@@ -1,9 +1,14 @@
-from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, render_to_response
+from django.urls import resolve
 
 import json
 import requests
 from requests.exceptions import HTTPError
 import urllib.request
+
+from analytics.models import ClientConnection, UserClientConnection, MovieView
+from analytics.utils import get_client_ip
 
 from .models import Movie
 from .forms import SearchForm
@@ -11,6 +16,15 @@ from .secrets import tmdb_key, omdb_key, player_key
 
 
 def index(request):
+    # Analytics
+    if request.user.is_authenticated:
+        new_connection = UserClientConnection(ip=get_client_ip(request), user=request.user, url=resolve(request.path_info).url_name)
+        new_connection.save()
+    else:
+        new_connection = ClientConnection(ip=get_client_ip(request), url=resolve(request.path_info).url_name)
+        new_connection.save()
+                
+    # Search Form
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
@@ -45,6 +59,10 @@ def index(request):
                 data = json.loads(resp.read().decode("utf-8"))
                 for i in data["results"]:
                     try:
+                        if Movie.objects.filter(movie_id=i["id"]).exists():
+                            obj = Movie.objects.get(movie_id=i["id"])
+                            obj.added = key
+                            obj.save()
                         if not Movie.objects.filter(movie_id=i["id"]).exists():
                             if "original_title" in i:
                                 with urllib.request.urlopen('https://api.themoviedb.org/3/movie/{}/external_ids?api_key={}'.format(i["id"], tmdb_key)) as resp:
@@ -140,9 +158,17 @@ def index(request):
         'form': form,
     }
     # print(popular_movies)
-    return render(request, 'index.html', context)
+    return render(request, 'home/index.html', context)
 
 def media(request, movie_id):
+    # Analytics
+    if request.user.is_authenticated:
+        new_connection = UserClientConnection(ip=get_client_ip(request), user=request.user, url=resolve(request.path_info).url_name)
+        new_connection.save()
+    else:
+        new_connection = ClientConnection(ip=get_client_ip(request), url=resolve(request.path_info).url_name)
+        new_connection.save()
+
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
@@ -150,7 +176,14 @@ def media(request, movie_id):
     else:
         form = SearchForm()
 
-    media = Movie.objects.get(movie_id=movie_id)
+    try:
+        media = Movie.objects.get(movie_id=movie_id)
+    except:
+        return HttpResponse(status=404)
+
+    new_view = MovieView(movie_id=movie_id, ip=get_client_ip(request), media_type=media.media_type)
+    new_view.save()
+
     if media.media_type == "movie":
         url = 'https://videospider.in/getvideo?key={}&video_id={}&tmdb=1'.format(player_key, media.movie_id)
         episode_urls = {}
@@ -182,10 +215,18 @@ def media(request, movie_id):
         'episode_urls': episode_urls,
         'form': form,
     }
-    return render(request, 'media.html', context)
+    return render(request, 'home/media.html', context)
 
 
 def search(request, qstr):
+    # Analytics
+    if request.user.is_authenticated:
+        new_connection = UserClientConnection(ip=get_client_ip(request), user=request.user, url=resolve(request.path_info).url_name)
+        new_connection.save()
+    else:
+        new_connection = ClientConnection(ip=get_client_ip(request), url=resolve(request.path_info).url_name)
+        new_connection.save()
+
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
@@ -236,7 +277,7 @@ def search(request, qstr):
                                             poster=i["poster_path"],
                                             release_date=i["release_date"],
                                             language=i["original_language"],
-                                            added='search',
+                                            added='',
                                             rated = rated,
                                             runtime = runtime,
                                             genre = genre,
@@ -257,7 +298,7 @@ def search(request, qstr):
                                             poster=i["poster_path"],
                                             release_date=i["first_air_date"],
                                             language=i["original_language"],
-                                            added='search',
+                                            added='',
                                             rated = rated,
                                             runtime = runtime,
                                             genre = genre,
@@ -279,10 +320,18 @@ def search(request, qstr):
         'search_results': search_results,
         'form': form
     }
-    return render(request, 'search.html', context)
+    return render(request, 'home/search.html', context)
 
 
 def report_a_bug(request):
+    # Analytics
+    if request.user.is_authenticated:
+        new_connection = UserClientConnection(ip=get_client_ip(request), user=request.user, url=resolve(request.path_info).url_name)
+        new_connection.save()
+    else:
+        new_connection = ClientConnection(ip=get_client_ip(request), url=resolve(request.path_info).url_name)
+        new_connection.save()
+
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
@@ -293,9 +342,17 @@ def report_a_bug(request):
     context = {
         'form': form
     }
-    return render(request, 'report-a-bug.html', context)
+    return render(request, 'home/report-a-bug.html', context)
 
 def trouble_playing(request):
+    # Analytics
+    if request.user.is_authenticated:
+        new_connection = UserClientConnection(ip=get_client_ip(request), user=request.user, url=resolve(request.path_info).url_name)
+        new_connection.save()
+    else:
+        new_connection = ClientConnection(ip=get_client_ip(request), url=resolve(request.path_info).url_name)
+        new_connection.save()
+
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
@@ -306,4 +363,6 @@ def trouble_playing(request):
     context = {
         'form': form
     }
-    return render(request, 'trouble-playing.html', context)
+    return render(request, 'home/trouble-playing.html', context)
+
+
