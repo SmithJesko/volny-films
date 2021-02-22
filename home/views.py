@@ -340,4 +340,16 @@ def trouble_playing(request):
     }
     return render(request, 'home/trouble-playing.html', context)
 
+def terms(request):
+    # Analytics
+    page_view(request)
 
+    context = {}
+    return render(request, 'home/terms.html', context)
+
+def privacy_policy(request):
+    # Analytics
+    page_view(request)
+
+    context = {}
+    return render(request, 'home/privacy-policy.html', context)
