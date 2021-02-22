@@ -7,7 +7,7 @@ Volny Films | A free media website made with Django 2.2.
 #### Index
 ![https://i.gyazo.com/ccbfe7efdb6fcebe4563db800a49b8ba.jpg](https://i.gyazo.com/ccbfe7efdb6fcebe4563db800a49b8ba.jpg)
 #### Media
-![https://i.gyazo.com/6535c206c5d814322dc97a8ecae3ee93.png](https://i.gyazo.com/6535c206c5d814322dc97a8ecae3ee93.png)
+![https://i.gyazo.com/456afd6427f14dfc38c8bee044759e2c.png](https://i.gyazo.com/456afd6427f14dfc38c8bee044759e2c.png)
 ![https://i.gyazo.com/df8240a0407d23416a4a86d4e3bfd125.png](https://i.gyazo.com/df8240a0407d23416a4a86d4e3bfd125.png)
 
 ### Table of Contents 📜
