@@ -44,6 +44,8 @@ Volny Films is a website made in Django 2.2 for searching and viewing movies and
 
 Volny Films can be accessed via [http://www.volnyfilms.com/](http://www.volnyfilms.com/).
 
+Unfortunately, the user must have an Ad-Blocker installed for the website to function properly (thanks iFrames). Because of this, the website is only offically supported on desktop. I am currently looking for a work-around to fix this issue.
+
 The user is greeted by the index page which lists media categories including Popular Movies, Top Rated Movies, In Theaters, Popular TV Shows, Top Rated TV Shows, and On The Air TV Shows. The user is able to search for a specific movie or TV show via the search bar.
 
 Volny Films does not currently support user accounts.
