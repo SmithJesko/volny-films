@@ -1,5 +1,5 @@
 env/
-secrets.py
+# secrets.py
 __pycache__/
 migrations/
 db.sqlite3
