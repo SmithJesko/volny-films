@@ -4,6 +4,8 @@
 
 <!-- MIT License -->
 
+<!-- Don't trust your government, kids. -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Volny Films</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/flickity.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
@@ -73,12 +75,12 @@
                         <li><a href="https://smithjesko.github.io/muy-pelicula/">Legacy Version</a></li>
                         <li><a href="/report-a-bug">Report a Bug</a></li>
                         <li>©
-                                <script>
-                                    document.write(new Date().getFullYear());
-                                </script>
-                                made for the
-                                &nbsp<i class="fas fa-globe-americas"></i>&nbsp by
-                                <a href="https://www.smithjesko.com" target="_blank">Smith Jesko</a>
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            made for the
+                            &nbsp<i class="fas fa-globe-americas"></i>&nbsp by
+                            <a href="https://www.smithjesko.com" target="_blank">Smith Jesko</a>
                         </li>
                     </ul>
                 </div>
@@ -98,7 +100,7 @@
 <script src="{% static 'js/main.js' %}"></script>
 <script src="{% static 'js/prebid-ads.js' %}"></script>
 <script>
-    if( window.canRunAds === undefined ){
+    if( window.canRunAds === undefined ) {
         // adblocker detected
         console.log('adblocker detected')
         document.getElementById('blocker-alert-text').innerHTML = 'Adblocker status: <b>Installed</b>'
@@ -109,3 +111,5 @@
     }
 </script>
 </html>
+
+<!-- "The power of Open Source is the power of the people." -->

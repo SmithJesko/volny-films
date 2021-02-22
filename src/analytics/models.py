@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
-from analytics.utils import get_client_ip
 
 User = get_user_model()
 
@@ -9,6 +8,15 @@ class ClientConnection(models.Model):
     ip = models.CharField(max_length=50, default="xxx", blank=True, null=True)
     url = models.CharField(max_length=512, default="xxx", blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
+    country_code = models.CharField(max_length=128, blank=True, null=True)
+    country_name = models.CharField(max_length=128, blank=True, null=True)
+    region_code = models.CharField(max_length=128, blank=True, null=True)
+    region_name = models.CharField(max_length=128, blank=True, null=True)
+    city = models.CharField(max_length=128, blank=True, null=True)
+    zip_code = models.CharField(max_length=128, blank=True, null=True)
+    latitude = models.CharField(max_length=128, blank=True, null=True)
+    longitude = models.CharField(max_length=128, blank=True, null=True)
+    metro_code = models.CharField(max_length=128, blank=True, null=True)
 
     def __str__(self):
         return str(self.ip)
@@ -21,12 +29,21 @@ class ClientConnection(models.Model):
     def title(self):
         return str(self.ip)
 
-
+# idk why tf i made these two seperate models, but now i'm too lazy to change
 class UserClientConnection(models.Model):
     ip = models.CharField(max_length=50, default="xxx", blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     url = models.CharField(max_length=512, default="xxx", blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
+    country_code = models.CharField(max_length=128, blank=True, null=True)
+    country_name = models.CharField(max_length=128, blank=True, null=True)
+    region_code = models.CharField(max_length=128, blank=True, null=True)
+    region_name = models.CharField(max_length=128, blank=True, null=True)
+    city = models.CharField(max_length=128, blank=True, null=True)
+    zip_code = models.CharField(max_length=128, blank=True, null=True)
+    latitude = models.CharField(max_length=128, blank=True, null=True)
+    longitude = models.CharField(max_length=128, blank=True, null=True)
+    metro_code = models.CharField(max_length=128, blank=True, null=True)
 
     def __str__(self):
         return str(self.ip)

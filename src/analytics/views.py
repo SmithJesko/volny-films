@@ -1,10 +1,14 @@
 from collections import Counter
 from datetime import datetime, timedelta
+
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from home.models import Movie
 from .models import ClientConnection, UserClientConnection, MovieView
 
+
+@login_required(login_url='/')
 def index(request):
     last_day = datetime.today() - timedelta(days=1)
     last_month = datetime.today() - timedelta(days=30)

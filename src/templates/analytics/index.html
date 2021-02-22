@@ -202,6 +202,7 @@
                                             <th scope="col">URL</th>
                                             <th scope="col">User</th>
                                             <th scope="col">IP Address</th>
+                                            <th scope="col">Location</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -211,12 +212,17 @@
                                                 <td class="text-warning">{{ i.url }}</td>
                                                 <td class="text-success">
                                                     {% if i.user %}
-                                                        {{ i.user}}
+                                                        {{ i.user }}
                                                     {% else %}
                                                         None
-                                                    {% endif%}
+                                                    {% endif %}
                                                 </td>
                                                 <td>{{ i.ip }}</td>
+                                                {% if i.city == "missing" or "None" %}
+                                                    <td>N/A</td>
+                                                {% else %}
+                                                    <td>{{ i.city }}, {{ i.region_code }}</td>
+                                                {% endif %}
                                             </tr>
                                         {% endfor %}
                                     </tbody>

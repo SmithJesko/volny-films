@@ -8,7 +8,7 @@ from requests.exceptions import HTTPError
 import urllib.request
 
 from analytics.models import ClientConnection, UserClientConnection, MovieView
-from analytics.utils import get_client_ip
+from analytics.utils import get_client_ip, IPInfo, page_view
 
 from .models import Movie
 from .forms import SearchForm
@@ -17,12 +17,7 @@ from .secrets import tmdb_key, omdb_key, player_key
 
 def index(request):
     # Analytics
-    if request.user.is_authenticated:
-        new_connection = UserClientConnection(ip=get_client_ip(request), user=request.user, url=resolve(request.path_info).url_name)
-        new_connection.save()
-    else:
-        new_connection = ClientConnection(ip=get_client_ip(request), url=resolve(request.path_info).url_name)
-        new_connection.save()
+    page_view(request)
                 
     # Search Form
     if request.method == 'POST':
@@ -162,12 +157,7 @@ def index(request):
 
 def media(request, movie_id):
     # Analytics
-    if request.user.is_authenticated:
-        new_connection = UserClientConnection(ip=get_client_ip(request), user=request.user, url='{}/{}'.format(resolve(request.path_info).url_name, movie_id))
-        new_connection.save()
-    else:
-        new_connection = ClientConnection(ip=get_client_ip(request), url='{}/{}'.format(resolve(request.path_info).url_name, movie_id))
-        new_connection.save()
+    page_view(request)
 
     if request.method == 'POST':
         form = SearchForm(request.POST)
@@ -220,12 +210,7 @@ def media(request, movie_id):
 
 def search(request, qstr):
     # Analytics
-    if request.user.is_authenticated:
-        new_connection = UserClientConnection(ip=get_client_ip(request), user=request.user, url=resolve(request.path_info).url_name)
-        new_connection.save()
-    else:
-        new_connection = ClientConnection(ip=get_client_ip(request), url=resolve(request.path_info).url_name)
-        new_connection.save()
+    page_view(request)
 
     if request.method == 'POST':
         form = SearchForm(request.POST)
@@ -325,12 +310,7 @@ def search(request, qstr):
 
 def report_a_bug(request):
     # Analytics
-    if request.user.is_authenticated:
-        new_connection = UserClientConnection(ip=get_client_ip(request), user=request.user, url=resolve(request.path_info).url_name)
-        new_connection.save()
-    else:
-        new_connection = ClientConnection(ip=get_client_ip(request), url=resolve(request.path_info).url_name)
-        new_connection.save()
+    page_view(request)
 
     if request.method == 'POST':
         form = SearchForm(request.POST)
@@ -346,12 +326,7 @@ def report_a_bug(request):
 
 def trouble_playing(request):
     # Analytics
-    if request.user.is_authenticated:
-        new_connection = UserClientConnection(ip=get_client_ip(request), user=request.user, url=resolve(request.path_info).url_name)
-        new_connection.save()
-    else:
-        new_connection = ClientConnection(ip=get_client_ip(request), url=resolve(request.path_info).url_name)
-        new_connection.save()
+    page_view(request)
 
     if request.method == 'POST':
         form = SearchForm(request.POST)
