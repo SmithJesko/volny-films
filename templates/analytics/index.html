@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
+    <link rel="icon" href="{% static 'img/favicon.png' %}">
 
     <title>Dashboard Template for Bootstrap</title>
 
@@ -218,11 +218,11 @@
                                                     {% endif %}
                                                 </td>
                                                 <td>{{ i.ip }}</td>
-                                                {% if i.city == "missing" or "None" %}
-                                                    <td>N/A</td>
-                                                {% else %}
+                                                <!-- {% if i.city == "missing" or "None" %} -->
+                                                    <!-- <td>N/A</td> -->
+                                                <!-- {% else %} -->
                                                     <td>{{ i.city }}, {{ i.region_code }}</td>
-                                                {% endif %}
+                                                <!-- {% endif %} -->
                                             </tr>
                                         {% endfor %}
                                     </tbody>
