@@ -31,8 +31,8 @@ class IPInfo:
                 with urllib.request.urlopen(req) as resp:
                     data = json.loads(resp.read().decode("utf-8"))
                     print(data)
-                    if data["country_code"]:
-                        return data["country_code"]
+                    if data[key]:
+                        return data[key]
                     else:
                         return "missing"
             except Exception as err:
