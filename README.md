@@ -22,7 +22,7 @@ Volny Films | A free media website made with Django 2.2.
 
 ---
 
-Volny Films is a website made in Django 2.2 for searching and viewing movies and TV shows. Currently, Volny Films has access to more than 151,100 movies and 198,000 TV episodes. This website was inspired by other "free movie" websites on the internet. Most of the "free movie" websites I find are slow and not designed well, so I set out to build on that is simple and just works. Since none of the media is hosted by Volny Films and is rather requested from external APIs and embedded, the website is completely legal and does not violate any copyright laws.
+Volny Films is a website made in Django 2.2 for searching and viewing movies and TV shows. Currently, Volny Films has access to more than 151,100 movies and 198,000 TV episodes. This website was inspired by other "free movie" websites on the internet. Most of the "free movie" websites I find are slow and not designed well, so I set out to build one that is simple and just works. Since none of the media is hosted by Volny Films and is rather requested from external APIs and embedded, the website is completely legal and does not violate any copyright laws.
 
 ### API's 🌐
 
