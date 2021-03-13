@@ -73,7 +73,8 @@ def page_view(r):
         new_connection = UserClientConnection(
                                             ip=get_client_ip(r),
                                             user=r.user,
-                                            url=resolve(r.path_info).url_name,
+                                            url=str(r.META.get('HTTP_HOST')),
+                                            request_body=str(r.META),
                                             country_code=info.country_code(),
                                             country_name=info.country_name(),
                                             region_code=info.region_code(),
@@ -88,16 +89,15 @@ def page_view(r):
     else:
         new_connection = ClientConnection(
                                         ip=get_client_ip(r),
-                                        url=resolve(r.path_info).url_name,
-                                            country_code=info.country_code(),
-                                            country_name=info.country_name(),
-                                            region_code=info.region_code(),
-                                            region_name=info.region_name(),
-                                            city=info.city(),
-                                            zip_code=info.zip_code(),
-                                            latitude=info.latitude(),
-                                            longitude=info.longitude(),
-                                            metro_code=info.metro_code(),)
+                                        url=str(r.META.get('HTTP_HOST')),
+                                        request_body=str(r.META),
+                                        country_code=info.country_code(),
+                                        country_name=info.country_name(),
+                                        region_code=info.region_code(),
+                                        region_name=info.region_name(),
+                                        city=info.city(),
+                                        zip_code=info.zip_code(),
+                                        latitude=info.latitude(),
+                                        longitude=info.longitude(),
+                                        metro_code=info.metro_code(),)
         new_connection.save()
-
-        print(str(r.META))
