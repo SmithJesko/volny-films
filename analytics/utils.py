@@ -101,3 +101,13 @@ def page_view(r):
                                         longitude=info.longitude(),
                                         metro_code=info.metro_code(),)
         new_connection.save()
+
+    for arg in args:
+        obj = UserClientConnection.objects.get(pk=new_connection.id)
+        obj.url = str(r.META.get('HTTP_HOST')) + '/' + str(arg) + '/'
+        obj.save()
+
+    for arg in args:
+        obj = ClientConnection.objects.get(pk=new_connection.id)
+        obj.url = str(r.META.get('HTTP_HOST')) + '/' + str(arg) + '/'
+        obj.save()
