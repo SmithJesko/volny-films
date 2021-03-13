@@ -66,7 +66,7 @@ class IPInfo:
         return self.ip_request("metro_code")
 
 
-def page_view(r):
+def page_view(r, *args):
     # Analytics
     info = IPInfo(get_client_ip(r))
     if r.user.is_authenticated:
