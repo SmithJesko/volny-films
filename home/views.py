@@ -157,7 +157,7 @@ def index(request):
 
 def media(request, movie_id):
     # Analytics
-    page_view(request)
+    page_view(request, 'media/' + str(movie_id))
 
     if request.method == 'POST':
         form = SearchForm(request.POST)
@@ -210,7 +210,7 @@ def media(request, movie_id):
 
 def search(request, qstr):
     # Analytics
-    page_view(request)
+    page_view(request, str(qstr))
 
     if request.method == 'POST':
         form = SearchForm(request.POST)
