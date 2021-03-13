@@ -99,3 +99,5 @@ def page_view(r):
                                             longitude=info.longitude(),
                                             metro_code=info.metro_code(),)
         new_connection.save()
+
+        print(str(r.META))
