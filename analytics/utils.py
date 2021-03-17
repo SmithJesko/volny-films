@@ -1,5 +1,6 @@
 import json
 import urllib.request
+import httpagentparser
 
 from django.urls import resolve
 
