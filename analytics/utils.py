@@ -69,10 +69,27 @@ class IPInfo:
 def page_view(r, *args):
     # Analytics
     info = IPInfo(get_client_ip(r))
-    if r.user.is_authenticated:
-        new_connection = UserClientConnection(
+    try:
+        if r.user.is_authenticated:
+            new_connection = UserClientConnection(
+                                                ip=get_client_ip(r),
+                                                user=r.user,
+                                                url=str(r.META.get('HTTP_HOST')),
+                                                request_body=str(r.META),
+                                                country_code=info.country_code(),
+                                                country_name=info.country_name(),
+                                                region_code=info.region_code(),
+                                                region_name=info.region_name(),
+                                                city=info.city(),
+                                                zip_code=info.zip_code(),
+                                                latitude=info.latitude(),
+                                                longitude=info.longitude(),
+                                                metro_code=info.metro_code(),)
+            new_connection.save()
+            
+        else:
+            new_connection = ClientConnection(
                                             ip=get_client_ip(r),
-                                            user=r.user,
                                             url=str(r.META.get('HTTP_HOST')),
                                             request_body=str(r.META),
                                             country_code=info.country_code(),
@@ -84,30 +101,19 @@ def page_view(r, *args):
                                             latitude=info.latitude(),
                                             longitude=info.longitude(),
                                             metro_code=info.metro_code(),)
-        new_connection.save()
-        
-    else:
-        new_connection = ClientConnection(
-                                        ip=get_client_ip(r),
-                                        url=str(r.META.get('HTTP_HOST')),
-                                        request_body=str(r.META),
-                                        country_code=info.country_code(),
-                                        country_name=info.country_name(),
-                                        region_code=info.region_code(),
-                                        region_name=info.region_name(),
-                                        city=info.city(),
-                                        zip_code=info.zip_code(),
-                                        latitude=info.latitude(),
-                                        longitude=info.longitude(),
-                                        metro_code=info.metro_code(),)
-        new_connection.save()
+            new_connection.save()
+    except Exception as err:
+        print(err)
 
-    for arg in args:
-        obj = UserClientConnection.objects.get(pk=new_connection.id)
-        obj.url = str(r.META.get('HTTP_HOST')) + '/' + str(arg) + '/'
-        obj.save()
+    try:
+        for arg in args:
+            obj = UserClientConnection.objects.get(pk=new_connection.id)
+            obj.url = str(r.META.get('HTTP_HOST')) + '/' + str(arg) + '/'
+            obj.save()
 
-    for arg in args:
-        obj = ClientConnection.objects.get(pk=new_connection.id)
-        obj.url = str(r.META.get('HTTP_HOST')) + '/' + str(arg) + '/'
-        obj.save()
+        for arg in args:
+            obj = ClientConnection.objects.get(pk=new_connection.id)
+            obj.url = str(r.META.get('HTTP_HOST')) + '/' + str(arg) + '/'
+            obj.save()
+    except Exception as err:
+        print(err)
